@@ -5,7 +5,12 @@
       "ProjectGuid": "5c2804eb-423e-4590-a916-341df2f26746",
       "DisplayName": "MongoDBDemo",
       "ColorIndex": 0
+    },
+    "e0357049-6238-44f2-a914-47dc6792fde8": {
+      "ProjectGuid": "e0357049-6238-44f2-a914-47dc6792fde8",
+      "DisplayName": "MongoDataAccess",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
