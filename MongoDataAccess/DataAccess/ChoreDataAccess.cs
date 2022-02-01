@@ -16,6 +16,48 @@ namespace MongoDataAccess.DataAccess
             var db = client.GetDatabase (databaseName);
             return db.GetCollection<T>(collection);
         }
-    
+
+        private async Task<List<UserModel>> GetAllUsers()
+        {
+            var usersCollection = ConnectionToMongo<UserModel>(UserCollecion);
+            var results = await usersCollection.FindAsync(_ => true);
+            return results.ToList();
+        }
+
+        public async Task<List<ChoreModel>> GetAllChores()
+        {
+            var choresCollection = ConnectionToMongo<ChoreModel>(ChoreCollection);
+            var results = await choresCollection.FindAsync(_ => true);
+            return results.ToList();
+        }
+        public async Task<List<ChoreModel>> GetAllChoresForUser(UserModel user)
+        {
+            var choresCollection = ConnectionToMongo<ChoreModel>(ChoreCollection);
+            var results = await choresCollection.FindAsync(c => c.AssignedTo.Id == user.Id);
+            return results.ToList();
+        }
+        
+        public Task CreateUser (UserModel user)
+        {
+            var usersCollection = ConnectionToMongo<UserModel>(UserCollecion);
+            return usersCollection.InsertOneAsync(user);
+        }
+        public Task CreateChore(ChoreModel chore)
+        {
+            var choresCollection = ConnectionToMongo<ChoreModel>(ChoreCollection);
+            return choresCollection.InsertOneAsync(chore);
+        }
+        public Task UpdateChore (ChoreModel chore)
+        {
+            var choresCollection = ConnectionToMongo<ChoreModel>(ChoreCollection);
+            var filter = Builders<ChoreModel>.Filter.Eq("Id", chore.Id);
+            return choresCollection.ReplaceOneAsync(filter, chore, new ReplaceOptions { IsUpsert = true });
+        }
+        public Task DeleteChore(ChoreModel chore)
+        {
+            var choresCollection = ConnectionToMongo<ChoreModel>(ChoreCollection);
+            return choresCollection.DeleteOneAsync(c =>c.Id == chore.Id);
+        }
+
     }
 }
