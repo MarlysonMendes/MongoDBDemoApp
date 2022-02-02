@@ -1,21 +1,13 @@
 ﻿using MongoDB.Driver;
 using MongoDBDemo;
+using MongoDataAccess.DataAccess;
+using MongoDataAccess.Models;
 
-string connectionString = "mongodb://127.0.0.1:27017";
-string databaseName = "simple_db";
-string collectionName = "people";
+ChoreDataAccess  db = new ChoreDataAccess();
 
-var client = new MongoClient(connectionString);
-var db = client.GetDatabase(databaseName);
-var collection = db.GetCollection<PersonModel>(collectionName);
+await db.CreateUser(new UserModel() { FirstName = "Marco", LastName = "Botao"});
 
-var person = new PersonModel { FirstName = "Matheus", LastName = "Mendes" };
+var users = await db.GetAllUsers();
 
-await collection.InsertOneAsync(person);
-
-var results = await collection.FindAsync(_=>true);
-
-foreach (var result in results.ToList())
-{
-    Console.WriteLine($"{result.Id}: {result.FirstName} {result.LastName}");
-}
+var chore = new ChoreModel() { AssignedTo = users.First(), ChoreText = "Mow the Lawn", FrequencyInDays=7};
+await db.CreateChore(chore);

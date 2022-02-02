@@ -17,7 +17,7 @@ namespace MongoDataAccess.DataAccess
             return db.GetCollection<T>(collection);
         }
 
-        private async Task<List<UserModel>> GetAllUsers()
+        public async Task<List<UserModel>> GetAllUsers()
         {
             var usersCollection = ConnectionToMongo<UserModel>(UserCollecion);
             var results = await usersCollection.FindAsync(_ => true);
@@ -57,6 +57,15 @@ namespace MongoDataAccess.DataAccess
         {
             var choresCollection = ConnectionToMongo<ChoreModel>(ChoreCollection);
             return choresCollection.DeleteOneAsync(c =>c.Id == chore.Id);
+        }
+        public async Task CompleteChore(ChoreModel chore)
+        {
+            var choresCollection = ConnectionToMongo<ChoreModel> (ChoreCollection);
+            var filter = Builders<ChoreModel>.Filter.Eq("Id", chore.Id);
+            await choresCollection.ReplaceOneAsync (filter, chore);
+
+            var choreHistoryCollection = ConnectionToMongo<ChoreHistoryModel>(ChoreHistoryCollection);
+            await choreHistoryCollection.InsertOneAsync(new ChoreHistoryModel(chore));
         }
 
     }

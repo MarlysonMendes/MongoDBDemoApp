@@ -152,6 +152,19 @@
         "runtime": {
           "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
+      },
+      "MongoDataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MongoDB.Driver": "2.14.1"
+        },
+        "compile": {
+          "bin/placeholder/MongoDataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MongoDataAccess.dll": {}
+        }
       }
     }
   },
@@ -381,11 +394,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "MongoDataAccess/1.0.0": {
+      "type": "project",
+      "path": "../MongoDataAccess/MongoDataAccess.csproj",
+      "msbuildProject": "../MongoDataAccess/MongoDataAccess.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "MongoDB.Driver >= 2.14.1"
+      "MongoDB.Driver >= 2.14.1",
+      "MongoDataAccess >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -414,7 +433,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\marly\\Desktop\\Projetos .NET\\MongoDBDemoApp\\MongoDataAccess\\MongoDataAccess.csproj": {
+              "projectPath": "C:\\Users\\marly\\Desktop\\Projetos .NET\\MongoDBDemoApp\\MongoDataAccess\\MongoDataAccess.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

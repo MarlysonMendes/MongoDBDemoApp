@@ -30,3 +30,5 @@ C:\Users\marly\Desktop\Projetos .NET\MongoDBDemoApp\MongoDBDemo\obj\Debug\net6.0
 C:\Users\marly\Desktop\Projetos .NET\MongoDBDemoApp\MongoDBDemo\obj\Debug\net6.0\ref\MongoDBDemo.dll
 C:\Users\marly\Desktop\Projetos .NET\MongoDBDemoApp\MongoDBDemo\obj\Debug\net6.0\MongoDBDemo.pdb
 C:\Users\marly\Desktop\Projetos .NET\MongoDBDemoApp\MongoDBDemo\obj\Debug\net6.0\MongoDBDemo.genruntimeconfig.cache
+C:\Users\marly\Desktop\Projetos .NET\MongoDBDemoApp\MongoDBDemo\bin\Debug\net6.0\MongoDataAccess.dll
+C:\Users\marly\Desktop\Projetos .NET\MongoDBDemoApp\MongoDBDemo\bin\Debug\net6.0\MongoDataAccess.pdb
